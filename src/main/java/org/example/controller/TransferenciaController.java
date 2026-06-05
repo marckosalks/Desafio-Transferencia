@@ -25,9 +25,13 @@ public class TransferenciaController {
         return transferenciaService.listarTransferencias();
     }
 
+    //fiz assim pra não retornar dados no devtools
     @PostMapping
-    public ResponseEntity<TransferenciaResponse> agendar(@RequestBody @Valid TransferenciaRequest dadosTransferencia) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(transferenciaService.cadastrarAgendamento(dadosTransferencia));
+    public ResponseEntity<Void> agendar(
+            @RequestBody @Valid TransferenciaRequest dadosTransferencia) {
+
+        transferenciaService.cadastrarAgendamento(dadosTransferencia);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
