@@ -112,4 +112,3 @@ cd desafio-transferencia
 mvn clean install
 
 mvn spring-boot:run
-## Como executar:
