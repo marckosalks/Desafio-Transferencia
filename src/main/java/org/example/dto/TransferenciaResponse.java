@@ -1,18 +1,24 @@
 package org.example.dto;
 
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TransferenciaResponse {
 
-    Long id;
-    String contaOrigem;
-    String contaDestino;
-    BigDecimal valorTransferencia;
-    BigDecimal valorTaxa;
-    BigDecimal valorTotalTransferencia;
-    LocalDate dataTransferencia;
-    LocalDateTime dataAgendamento;
+    private Long id;
+    private String contaOrigem;
+    private String contaDestino;
+    private BigDecimal valorTransferencia;
+    private BigDecimal valorTaxa;
+    private BigDecimal valorTotalTransferencia;
+    private LocalDate dataTransferencia;
+    private LocalDate dataAgendamento;
 
 }

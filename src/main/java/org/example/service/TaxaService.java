@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.domain.FaixaTaxa;
+import org.example.exception.RegraNegocioException;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -41,7 +42,7 @@ public class TaxaService {
         FaixaTaxa faixa = tabelaTaxas.stream()
                 .filter(t -> t.atende(diasParaTransferencia))
                 .findFirst().orElseThrow(() ->
-                        new IllegalArgumentException("Prazo inválido"));;
+                        new RegraNegocioException("Não existe taxa aplicável para o período informado"));;
 
         BigDecimal taxaPercentual =
                 valorTransferencia.multiply(faixa.getPercentual())
