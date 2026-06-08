@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,10 @@ public class TransferenciaService {
 
         LocalDate hoje = LocalDate.now();
         LocalDate dataTransferencia = dados.getDataTransferencia();
+
+        if (Objects.equals(dados.getContaOrigem(), dados.getContaOrigem())) {
+            throw new RegraNegocioException("Contas não podem ser iguais!");
+        }
 
         if (dataTransferencia.isBefore(hoje)) {
             throw new RegraNegocioException("Data da transferência anterior à data atual!");
