@@ -33,7 +33,7 @@ public class TransferenciaService {
         LocalDate hoje = LocalDate.now();
         LocalDate dataTransferencia = dados.getDataTransferencia();
 
-        if (Objects.equals(dados.getContaOrigem(), dados.getContaOrigem())) {
+        if (Objects.equals(dados.getContaOrigem(), dados.getContaDestino())) {
             throw new RegraNegocioException("Contas não podem ser iguais!");
         }
 
