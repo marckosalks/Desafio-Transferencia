@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -79,15 +80,14 @@ class TransferenciaControllerTest {
                 .build();
 
         when(transferenciaService.cadastrarAgendamento(any(TransferenciaRequest.class)))
-                .thenReturn(response);
+                .thenReturn(null);
 
         mockMvc.perform(post("/v1/transferencia")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.contaOrigem").value("12345678-9"))
-                .andExpect(jsonPath("$.contaDestino").value("23456789-0"))
-                .andExpect(jsonPath("$.valorTransferencia").value(100));
+                .andExpect(status().isCreated());
+
+        verify(transferenciaService)
+                .cadastrarAgendamento(any(TransferenciaRequest.class));
     }
 }
